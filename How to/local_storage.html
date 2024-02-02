@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>How to: Uso del almacenamiento local</title>
+</head>
+<body>
+
+	<h1>How to: Uso del almacenamiento local</h1>
+	<div id="counter"></div>
+	<button id="addBtn" onclick="add()">Sumar</button>
+
+	<script type="text/javascript">
+		const STORAGE_NAME = "counted";
+		let counter = 0;
+		counter = localStorage.getItem(STORAGE_NAME);
+
+		show();
+
+		function add() {
+			localStorage.setItem(STORAGE_NAME, ++counter);
+			show();
+		}
+
+		function show() {
+			document.getElementById("counter").innerHTML = "Conteo: " + counter;
+		}
+
+		// Sincronización de pestañas
+		window.addEventListener ("storage", event => {
+			if (event.key === STORAGE_NAME) {
+				counter = localStorage.getItem(STORAGE_NAME);
+				show();
+			}
+		});
+	</script>
+</body>
+</html>

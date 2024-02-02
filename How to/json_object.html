@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>How to: objeto "JSON"</title>
+	
+	<!-- A partir de una variable JSON se obtiene un objeto 
+		 y se asigna su contendio en una lista desordenada.
+	 -->
+</head>
+<body>
+	<h1>Ejemplo del uso de objeto "JSON"</h1>
+	<div id="news"></div>
+	
+	<script type="text/javascript">
+		const jsonNews = `{
+			"news": [{
+				"date": "25/01/2024",
+				"subject": "C3 | Calor extremo: alerta roja, naranja y amarilla para ocho provincias",
+				"url": "https://www.cadena3.com/noticia/sociedad/calor-extremo-alertas-roja-naranja-y-amarilla-para-ocho-provincias_379313"
+				}, 
+					{
+				"date": "25/01/2024",
+				"subject": "Clarín | Copa de la Liga: Candidatos, sorpresas y el frenético día a día de las primeras seis fechas",
+				"url": "https://www.clarin.com/deportes/arranca-copa-liga-2024-candidatos-sorpresas-frenetico-dia-dia-primeras-fechas_0_9ofX6JYHrY.html"
+				}, 
+					{
+				"date": "25/01/2024",
+				"subject": "La Nación | Histórico. La sorprendente primera imágen que difundió Japón de la sonda SLIM en la luna",
+				"url": "https://www.lanacion.com.ar/ciencia/japon-difundio-la-primera-imagen-desde-la-luna-de-la-mision-de-la-sonda-slim-tras-el-exitoso-nid25012024/"
+				}],
+			"length": 3
+		}`;
+
+		const objNews = JSON.parse(jsonNews);
+		const newsDiv = document.getElementById("news");
+
+		newsDiv.innerHTML = "<ul>"
+		for (let i = 0; i < objNews.length; i++) {
+			 newsDiv.innerHTML += `
+			 	<li>${objNews.news[i].date} <a href="${objNews.news[i].url}">${objNews.news[i].subject}</a>
+    			</li>`;
+		}
+		newsDiv.innerHTML += "</ul>";
+	</script>
+</body>
+</html>

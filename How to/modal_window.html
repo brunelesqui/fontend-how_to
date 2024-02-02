@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>How to: Ventana modal</title>
+
+	<style type="text/css">
+		.modal {
+			display: none; /* Oculto, por defecto */
+			position: fixed;
+			z-index: 1; /* Se situará por encima de otros elementos */
+			padding-top: 200px;
+			left: 0;
+			top:0;
+			width: 100%;
+			height: 100%;
+			overflow: auto; /* Se activara el scroll si es necesario */
+			background-color: rgba(0, 0, 0, 0.5);
+		}
+		.modalContent {
+			position: relative;
+			background-color: white;
+			margin: auto;
+			padding: 24px;
+			width: 60%;
+		}
+		.animateTopBottom {
+			-webkit-animation-name: top-animation;
+			-webkit-animation-duration: 0.5s;
+			animation-name: top-animation;
+			animation-duration: 0.5s;
+		}
+		@-webkit-keyframes top-animation {
+			from { top: -300px; opacity: 0 }
+			to { top: 0; opacity: 1 }
+		}
+		@keyframes top-animation {
+			from { top: -300px; opacity: 0 }
+			to { top: 0; opacity: 1 }
+		}
+		.closeModal {
+			color: black;
+			float: right;
+			font-size: 30px;
+			font-weight: bold;
+		}
+		.closeModal:hover,
+		.closeModal:focus {
+			color: black;
+			text-decoration: none;
+			cursor: pointer;
+		}
+	</style>
+</head>
+<body>
+	<h1>How to: Ventana modal</h1>
+	<button id="showModal">Abrir modal</button>
+
+	<!-- Venana modal por defecto no visible -->
+	<div id="modalWindow" class="modal">
+		<div class="modalContent animateTopBottom">
+			<span class="closeModal">&times;</span>
+			<h2>Ventana modal</h2>
+			<p>Esta es una ventana modal.</p>
+		</div>
+	</div>
+
+	<script type="text/javascript">
+		let modal = document.getElementById("modalWindow");
+		let btn = document.getElementById("showModal");
+		let btnCloseModal = document.getElementsByClassName("closeModal")[0];
+
+		btn.addEventListener("click", function () {
+			modal.style.display = "block";
+		});
+
+		btnCloseModal.addEventListener("click", function() {
+			modal.style.display = "none";
+		});
+
+		window.addEventListener("click", function () {
+			if (event.target == modal) 
+				modal.style.display = "none";
+		});
+	</script>
+</body>
+</html>
