@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>How to: Web component con Javascript</title>
+</head>
+<body>
+
+	<my-web-component name="myWebComponentAttribute" surname="myAttribute"></my-web-component>
+	<h1>Hola</h1>
+
+	<script type="text/javascript">
+		class myWebComponent extends HTMLElement {
+			constructor () {
+				super();
+
+				this.name="Bruno";
+				this.surname;
+			}
+
+			connectedCallback () {
+				this.innerHTML = `
+					<h1>Hola ${this.name}</h1>
+					<h1>Hola ${this.surname}</h1>
+				`;
+				this.style.color = "blue";
+			}
+
+			static get observedAttributes () {
+				return ["name", "surname"];
+			}
+
+			attributeChangedCallback (nameAttribute_, oldValue_, newValue_) {
+				switch (nameAttribute_) {
+				case "name": 
+					this.name = newValue_;
+					break;
+				case "surname": 
+					this.surname = newValue_;
+					break;
+				}
+			}
+		}
+
+		window.customElements.define ("my-web-component", myWebComponent);
+	</script>
+
+
+
+</body>
+</html>
