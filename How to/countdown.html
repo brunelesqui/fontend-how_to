@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>How to: countdown</title>
+</head>
+<body>
+
+	<div id="countdown"></div>
+
+	<script type="text/javascript">
+		class DateDiference {
+			constructor (dateFrom_, dateTo_ = null) {
+				this.SECONDS = 1000;
+
+				this.dateFrom = dateFrom_;
+				this.dateTo = (dateTo_ == null) ? new Date() : dateTo_;
+
+				this.days = 0;
+				this.hours = 0;
+				this.minutes = 0;
+				this.seconds = 0;
+			}
+
+			GetDays () { return Math.floor(this.days); }
+
+			GetHours () { return Math.floor(this.hours); }
+
+			GetMinutes () { return Math.floor(this.minutes); }
+
+			GetSeconds () { return Math.floor(this.seconds); }
+
+			Calculate() {
+				const SECONDS_IN_DAY = 86400;
+				const SECONDS_IN_HOUR = 3600;
+				const SECODS_IN_MINUTE = 60;
+
+
+				let differenceInSeconds = 
+					(this.dateFrom.getTime() - this.dateTo.getTime()) / this.SECONDS;
+
+				this.days = differenceInSeconds / SECONDS_IN_DAY;
+
+				let restToHours = differenceInSeconds % SECONDS_IN_DAY;
+				this.hours = restToHours / SECONDS_IN_HOUR;
+
+				let restToMinuts = restToHours % SECONDS_IN_HOUR;
+				this.minutes = restToMinuts / SECODS_IN_MINUTE;
+
+				this.seconds = restToMinuts % SECODS_IN_MINUTE;
+			}
+		};
+
+		class Countdown {
+			constructor (dateFrom_, dateTo_ = null) {
+				this.dateDiff = new DateDiference (dateFrom_, dateTo_);
+			}
+
+			Days () { return this.dateDiff.GetDays(); }
+			Hours () { return this.dateDiff.GetHours(); }
+			Minutes () { return this.dateDiff.GetMinutes(); }
+			Seconds () { return this.dateDiff.GetSeconds(); }
+
+			Execute() {
+				this.dateDiff.Calculate();
+			}
+		};
+
+		const INTERVAL = 1000;
+		setInterval(show, INTERVAL);
+		
+		function show(countdown_) {
+			let countdown = new Countdown(new Date("Feb 9, 2024 12:00:00"));
+			countdown.Execute();
+
+			document.getElementById("countdown").innerHTML = countdown.Days() + " días " + countdown.Hours() + " horas " + countdown.Minutes() + " minutos " + countdown.Seconds() + " segundos  restantes.";
+		}
+	</script>
+</body>
+</html>
