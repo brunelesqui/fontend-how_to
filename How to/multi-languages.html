@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>How to: Multilanguages</title>
+</head>
+<body>
+
+	<header>
+		<h1 data-section="header" data-value="title">CABECERA</h1>
+		<ul id="flags">
+			<li data-language="es"><span>Es</span></li>
+			<li data-language="en"><span>En</span></li>
+		</ul>
+	</header>
+
+	<section>
+		<h2 data-section="section" data-value="title">TÍTULO DE LA SECCIÓN</h2>
+		<p data-section="section" data-value="description">Descripcion de la sección.</p>
+	</section>
+
+	<article>
+		<h2 data-section="article" data-value="title">TÍTULO DEL ARTÍCULO</h2>
+		<p data-section="article" data-value="description">Descripción del artíclo.</p>
+	</article>
+
+	<script type="text/javascript">
+		const es = `{
+			"header": { 
+				"title": "CABECERA"
+			},
+			"section": {
+				"title": "TÍTULO DE LA SECCIÓN",
+				"description": "Descripción de la sección."
+			},
+			"article": {
+				"title": "TÍTULO DEL ARTÍCULO",
+				"description": "Descripción del artículo."
+			}
+		}`;
+		const en = `{
+			"header": {
+				"title": "HEADER"
+			},
+			"section": {
+				"title": "SECTION TITLE",
+				"description": "Description of the section."
+			},
+			"article": {
+				"title": "ARTICLE TITLE",
+				"description": "Description of the article."
+			}
+		}`;
+
+		const flagElement = document.getElementById("flags");
+		flagElement.addEventListener('click', (e) => {
+			changeLanguage(e.target.parentElement.dataset.language);
+		});
+
+		const textsToChange = document.querySelectorAll("[data-section]");
+
+		const changeLanguage = (language) => { 
+			const texts = JSON.parse((language === 'es') ? es : en);
+			
+			for(const textToChange of textsToChange) {
+				const section = textToChange.dataset.section;
+				const value = textToChange.dataset.value;
+
+				textToChange.innerHTML = texts[section][value];
+			}
+		};
+	</script>
+</body>
+</html>
