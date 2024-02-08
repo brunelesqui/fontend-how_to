@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>How to: Change theme</title>
+
+	<style type="text/css">
+		:root {
+		    --color-fuente: #000;
+		    --color-fondo: #fff;
+		}
+
+		[tema="dark"]{
+		    --color-fuente: #ffffff;
+		    --color-fondo: #000000;
+		}
+
+		[tema="light"]{
+		    --color-fuente: #000;
+		    --color-fondo: #fff;
+		}
+
+		body {
+		  background-color:var(--color-fondo);
+		  color:var(--color-fuente) 
+		}
+
+		a {
+	    background-color:var(--color-fuente);
+	    color:var(--color-fondo);
+	    text-decoration: none;
+	    text-transform: uppercase;
+	    padding-top:1rem;
+	    padding-bottom:1rem;
+	    padding-left:.75rem;
+	    padding-right:.75rem;
+	    border-style:solid;
+	    border-width: .2rem;
+	    border-color: var(--color-fuente);
+	    border-radius: 2rem;
+	    
+	}
+
+	a:hover {
+	    background-color:var(--color-fondo);
+	    color:var(--color-fuente);
+	    text-decoration:none;
+	}
+	</style>
+</head>
+<body>
+
+	<header>
+		<label id="switch">
+			<input type="checkbox">
+		</label>
+
+		<h1>Caronte Web Studio</h1>
+	</header>
+
+	<main>
+		<h2>Custom web and design</h2>
+		<p>Desarrollamos la web para tu negocio con un diseño web a medida 100% personalizado. Olvidate de plantillas y proyectos sin personalidad. Estamos en Vitoria-Gasteiz y trabajamos con clientes de todo el país.
+        </p>
+        <a href="https://carontestudio.com/" target="_blank">Descúbrenos</a>
+	</main>
+
+	<script type="text/javascript">
+		const colorSwitch = document.querySelector('#switch input[type="checkbox"]');
+
+        function cambiaTema(ev){
+            if(ev.target.checked){
+                document.documentElement.setAttribute('tema', 'dark');
+            } else {
+                document.documentElement.setAttribute('tema', 'light');
+            }
+        }
+        
+        colorSwitch.addEventListener('change', cambiaTema);
+	</script>
+
+</body>
+</html>
