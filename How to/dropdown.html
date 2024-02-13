@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>How to: Dropdown</title>
+
+	<style type="text/css">
+		.drowdown { display: inline-block; position: relative;}
+		.drowdown-btn { border:none; padding: 12px; background-color: #f1f1f1; padding: 16px; font-size: 18px; }
+		.drowdown-content { display: none; position: absolute; min-width: 160px; background-color: #f1f1f1; box-shadow: 8px 8px 0 0 rgba(0, 0, 0, 0.2);}
+		.drowdown-content a { display:block; text-decoration: none; padding: 16px; color: black;}
+		.drowdown-content a:hover {background-color: #e1e1e1;}
+		.drowdown:hover .drowdown-content { display: block; }
+	</style>
+</head>
+<body>
+
+	<h1>How to: Dropdown</h1>
+
+	<div class="drowdown">
+		<button class="drowdown-btn">Links</button>
+		<div class="drowdown-content">
+			<a href="#">Link 1</a>
+			<a href="#">Link 2</a>
+			<a href="#">Link 3</a>
+		</div>
+	</div>
+
+	<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+	tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+	quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+	consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+	cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+	proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+
+</body>
+</html>
