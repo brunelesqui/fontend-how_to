@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>How to: required-field</title>
+</head>
+<body>
+	<form>
+		<input type="checkbox" id="checkField"/><label>Required field</label><br/>
+		<input type="text" id="textField" placeholder="Input text here"/><br/>
+		<input type="submit" value="Submit"/>
+	</form>
+
+	 
+
+	<script type="text/javascript">
+	  const textElement = document.getElementById("textField");
+	  const checkElement = document.getElementById("checkField");
+
+	  checkElement.addEventListener("click",(e)=> {
+	  	if (checkElement.checked)
+	    	textElement.required = true;
+	    else
+	    	textElement.required = false;
+	  });
+
+</script>
+</body>
+</html>

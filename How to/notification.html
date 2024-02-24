@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>How to: notification</title>
+    </head>
+<body>
+
+    <button>Notify me!</button>
+
+    <script type="text/javascript">
+    	let NotificationOK = false;
+    	const notifyBtn = document.querySelector("button");
+        
+        notifyBtn.addEventListener("click", () => {	
+        	if(Notification.permission === "granted" && NotificationOK) {
+            	const title = "Notification";
+                const body = "I'm notifying you!";
+                const options = {
+                	body: body,
+                    lang: "EN",
+                    renotify: true
+                };
+                setTimeout(()=>{
+                const notification = new Notification(title, options);
+                }, 5000);
+            }
+        });
+        
+        if(!("Notification" in window)) {
+        	alert("This browser does not support desktop notification!");
+        } else {
+        	Notification.requestPermission(function (permission) {
+            	if (permission === "granted")
+                	NotificationOK = true;
+            });                
+        }
+    </script>
+
+    </body>
+</html>
